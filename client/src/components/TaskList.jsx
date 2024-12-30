@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCheck, FaTimes, FaTrashAlt, FaEdit, FaSave } from 'react-icons/fa';
-import { MdOutlineDoneAll, MdOutlineDone  } from "react-icons/md";
+import { MdOutlineDoneAll, MdOutlineDone } from "react-icons/md";
 import { useTasks } from '../hooks/useTasks';
 import TaskFilter from './TaskFilters';
+import TaskForm from './TaskForm';
+import Header from './Header';
 
 const TaskList = () => {
   const { tasks, modifyTask, removeTask } = useTasks();
@@ -10,6 +12,12 @@ const TaskList = () => {
   const [editingTask, setEditingTask] = useState(null); // Estado para la tarea que se está editando
   const [editedTitle, setEditedTitle] = useState('');
   const [editedDescription, setEditedDescription] = useState('');
+
+  const { fetchTasks } = useTasks();
+
+  useEffect(() => {
+    fetchTasks(); // Carga inicial de tareas
+  }, [fetchTasks]);
 
   // Función para manejar el cambio de filtro
   const handleFilterChange = (newFilter) => {
@@ -48,6 +56,7 @@ const TaskList = () => {
 
   return (
     <div className="space-y-4">
+      <TaskForm />
       {/* Controles de Filtro */}
       <TaskFilter filter={filter} onFilterChange={handleFilterChange} />
 
@@ -56,8 +65,7 @@ const TaskList = () => {
         {filteredTasks.map((task) => (
           <div
             key={task._id}
-            className={`p-4 border rounded shadow-lg flex flex-col justify-between transition-transform duration-200 hover:shadow-2xl hover:-translate-y-2 ${
-                task.completed ? 'bg-green-200' : 'bg-white'
+            className={`p-4 border rounded shadow-lg flex flex-col justify-between transition-transform duration-200 hover:shadow-2xl hover:-translate-y-2 ${task.completed ? 'bg-green-200' : 'bg-white'
               }`}
           >
             <div>
@@ -106,9 +114,8 @@ const TaskList = () => {
             <div className="flex justify-end gap-2 items-center mt-4">
               <button
                 onClick={() => toggleCompleted(task)}
-                className={`px-4 py-2 rounded text-white ${
-                  task.completed ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-500 hover:bg-gray-600'
-                }`}
+                className={`px-4 py-2 rounded text-white ${task.completed ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-500 hover:bg-gray-600'
+                  }`}
               >
                 {task.completed ? <MdOutlineDoneAll /> : <MdOutlineDone />}
               </button>
@@ -116,7 +123,7 @@ const TaskList = () => {
                 onClick={() => startEditing(task)}
                 className="px-4 py-2 rounded bg-rose-900 hover:bg-rose-600 text-white"
               >
-                 <FaEdit />
+                <FaEdit />
               </button>
               <button
                 onClick={() => removeTask(task._id)}

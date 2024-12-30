@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import API from '../services/api';
+import api from '../services/api';
 import {setTasks, addTask, deleteTask, updateTask, setLoading, setError,} from '../redux/slices/taskSlice';
 
 export const useTasks = () => {
@@ -14,7 +14,7 @@ export const useTasks = () => {
     try {
       // Aplica el filtro al endpoint
       const query = filter === 'all' ? '' : `?completed=${filter === 'completed'}`;
-      const response = await API.get(`/tasks${query}`);
+      const response = await api.get(`/tasks${query}`,);
       dispatch(setTasks(response.data));
     } catch (err) {
       dispatch(setError(err.message));
@@ -26,7 +26,7 @@ export const useTasks = () => {
   const createTask = async (task) => {
     dispatch(setLoading(true));
     try {
-      const response = await API.post('/tasks', task);
+      const response = await api.post('/tasks', task);
       dispatch(addTask(response.data));
     } catch (err) {
       dispatch(setError(err.message));
@@ -38,7 +38,7 @@ export const useTasks = () => {
   const removeTask = async (id) => {
     dispatch(setLoading(true));
     try {
-      await API.delete(`/tasks/${id}`);
+      await api.delete(`/tasks/${id}`);
       dispatch(deleteTask(id));
     } catch (err) {
       dispatch(setError(err.message));
@@ -50,7 +50,7 @@ export const useTasks = () => {
   const modifyTask = async (id, updates) => {
     dispatch(setLoading(true));
     try {
-      const response = await API.put(`/tasks/${id}`, updates);
+      const response = await api.put(`/tasks/${id}`, updates);
       dispatch(updateTask(response.data));
     } catch (err) {
       dispatch(setError(err.message));

@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { check, body, param, query } = require('express-validator');
+const { body, param, query } = require('express-validator');
 const { validateTasks } = require('../middlewares/validateTasks');
+// const  auth  = require('../middlewares/auth');
 const { createTask, getTasks, getTaskById, updateTask, deleteTask } = require('../controllers/tasks.controller');
 
 
 // Endpoints
 router.post('/tasks', 
-    body('title').notEmpty().withMessage('El título es obligatorio'), validateTasks, 
+    body('title').notEmpty().withMessage('El título es obligatorio'),validateTasks, 
     createTask);
 
 router.get('/tasks', 

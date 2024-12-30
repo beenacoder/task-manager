@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const API = axios.create({
-  baseURL: 'http://localhost:8080/api', // Cambia esto si usas un dominio diferente
-});
+const token = localStorage.getItem('token');
+const api = axios.create({
+  baseURL: 'http://localhost:8080/api', 
+    headers: { Authorization: `Bearer ${token}` },
+  }
+);
 
-export default API;
+export default api;
