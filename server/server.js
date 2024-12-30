@@ -19,7 +19,7 @@ const app = express();
 // Middlewares
 app.use(cors(
     {
-        origin: 'https://task-manager-gamma-gold-52.vercel.app/', // Reemplaza con la URL de tu frontend en Vercel
+        origin: 'https://task-manager-4cwdroe4d-ariel-cabezas-projects.vercel.app/', // Reemplaza con la URL de tu frontend en Vercel
       }
 ));
 app.use(express.json());
