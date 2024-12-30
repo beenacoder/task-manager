@@ -17,7 +17,11 @@ const app = express();
 
 
 // Middlewares
-app.use(cors());
+app.use(cors(
+    {
+        origin: 'https://task-manager-gamma-gold-52.vercel.app/', // Reemplaza con la URL de tu frontend en Vercel
+      }
+));
 app.use(express.json());
 
 connectDB();
