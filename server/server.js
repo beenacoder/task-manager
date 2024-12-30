@@ -20,6 +20,8 @@ const app = express();
 app.use(cors(
     {
         origin: 'https://task-manager-gamma-gold-52.vercel.app/', 
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
       }
 ));
 app.use(express.json());
