@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const token = localStorage.getItem('token');
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api', 
+  baseURL: VITE_BACKEND_URL, 
     headers: { Authorization: `Bearer ${token}` },
   }
 );
