@@ -8,12 +8,6 @@ import AuthForm from './pages/AuthForm';
 import Header from './components/Header';
 
 const App = () => {
-  // const { fetchTasks } = useTasks();
-
-  // useEffect(() => {
-  //   fetchTasks(); // Carga inicial de tareas
-  // }, [fetchTasks]);
-
   return (
     <Router>
       <div className="min-h-screen bg-slate-900">
