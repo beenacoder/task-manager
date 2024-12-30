@@ -5,24 +5,6 @@ const Header = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-
-//   useEffect(() => {
-//     const fetchUserName = async () => {
-//       const token = localStorage.getItem('token');
-//       if (token) {
-//         try {
-//           const user = await getUserProfile(token);
-//           setUserName(user.name);
-//         } catch {
-//           setUserName(null); // Si el token no es válido
-//         }
-//       }
-//     };
-
-//     fetchUserName();
-    
-//   }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("name"); // Limpiar otros datos de usuario si es necesario
@@ -53,12 +35,6 @@ const Header = () => {
                 className=" px-4 py-2 hover:underline"
               >
                 Iniciar Sesión
-              </Link>
-              <Link
-                to="/register"
-                className=" px-4 py-2 rounded hover:underline"
-              >
-                Registrarse
               </Link>
             </div>
           )}
