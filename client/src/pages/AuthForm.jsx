@@ -32,7 +32,7 @@ const AuthForm = () => {
       if (isLogin) {
         // Guardar el token JWT en localStorage o en un estado global
         localStorage.setItem('token', data.token);
-        navigate('/tasks');
+        navigate('/api/tasks');
       } else {
         alert('Registro exitoso. Ahora puedes iniciar sesión.');
         toggleForm(); // Cambiar al formulario de inicio de sesión
